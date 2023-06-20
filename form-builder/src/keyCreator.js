@@ -27,7 +27,10 @@ const nonKeyWords = [
   "with",
   "not",
   "they",
-  "per"
+  "per",
+  "-",
+  ".",
+  "&"
 ];
 function keyCreator(keyquestion) {
   let singleQuestionKeyCombinationArray = [];

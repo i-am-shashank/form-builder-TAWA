@@ -57,3 +57,10 @@ input:focus{
 .br-10{
     border-radius: 6px;
 }
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+.flex-between{
+    justify-content: space-between;
+}

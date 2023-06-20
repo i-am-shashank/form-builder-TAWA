@@ -1,56 +1,74 @@
 import { newAllQuestionKeyCombinationArray } from "./keyCreator";
-let emptyKeyArray = [];
-
-function StructureCreator({ serialNo, question, num, keyCreator, extraField }) {
-  keyCreator(question);
+// let emptyKeyArray = ["system_complying","standard_equivalent","firm_independent","firm_having",];
+function StructureCreator({
+  col1,
+  col2,
+  passFail,
+  ynna,
+  inpTxt,
+  txt,
+  num,
+  keyCreator,
+}) {
+  keyCreator(col2);
+  console.log({ col1, col2, passFail, ynna, inpTxt, txt });
 
   const structureHTML = `
-    <div class="section">
-              <div class="rows">
-                <div class="col-1 text-center">
-                  <p class="num-label">${serialNo}</p>
-                </div>
-                <div class="col-11">
-                  <label class="ors-form-label">${question}</label>
-                  <div class="rows">
-                    <div class="col-3 main-radio" data-fieldtype="radio-group" data-bind="foreach:{
-                        data:[
-                          {id:'yes',label:'Yes'},
-                          {id:'no',label:'No'}
-                        ],
-                        as:'option'
-                      }">
-                      <div class="radio-common"
-                        data-bind="css:{'selected':vm.formData.${newAllQuestionKeyCombinationArray[num - 1]
-    }()===option.id}">
-                        <input type="radio" name="${newAllQuestionKeyCombinationArray[num - 1]
-    }" data-bind="
-                            checkedValue: option.id,
-                            checked: vm.formData.${newAllQuestionKeyCombinationArray[num - 1]
-    }, 
-                            attr:{
-                              id:'${newAllQuestionKeyCombinationArray[num - 1]
-    }'+'-'+option.id,disabled:vm.isReadOnlyField('${newAllQuestionKeyCombinationArray[num - 1]
-    }')
-                            }" />
-                        <label
-                          data-bind="text:option.label, attr:{for:'${newAllQuestionKeyCombinationArray[num - 1]
-    }'+'-'+option.id}"></label>
-                      </div>
-                    </div>
-                    <div class="col-9 ors-form-control textarea-input" data-fieldtype="textarea">
-                      <textarea class="textarea-text" name="${newAllQuestionKeyCombinationArray[num - 1]
-    }_remarks"
-                        placeholder="Remarks by Auditor" style="height: 30px;"
-                        data-bind="expandable:{min:1},value:vm.formData.${newAllQuestionKeyCombinationArray[num - 1]
-    }_remarks,attr:{readonly:vm.isReadOnlyField('${newAllQuestionKeyCombinationArray[num - 1]
-    }_remarks')}"></textarea>
-                    </div>
+<div  class="acceptance_significant_row">
+          <div class="acceptance_significant_inner"> 
+              <div class="acceptance_block">
+                  <!-- <h3 class="mb-2">col2 items h</h3> -->
+                  <div class="acceptance_inner">
+                      <p>${col2}</p>
                   </div>
-                </div>
               </div>
-            </div>
-               `;
+
+              ${
+                inpTxt
+                  ? `<div class="significant_block">
+                <div class="significant_inner">
+                  <input class="w-md ors-form-input" type="text" id="${
+                    newAllQuestionKeyCombinationArray[num - 1]
+                  }" name="${newAllQuestionKeyCombinationArray[num - 1]}"
+                    placeholder="${txt}"
+                    data-bind="value:vm.formData.${
+                      newAllQuestionKeyCombinationArray[num - 1]
+                    }, attr:{readonly:vm.isReadOnlyField('${
+                      newAllQuestionKeyCombinationArray[num - 1]
+                    }')}">
+                </div>
+              </div>`
+                  : `<div class="significant_block">
+                  <div class="significant_inner">
+                      <div class="main-radio" data-fieldtype="radio-group"
+                          data-bind="foreach:{data:[{id:'passed',label:'Passed'},{id:'failed',label:'Failed'}],as:'option'}">
+                          <div class="radio-common" data-bind="css:{'selected':vm.formData.${
+                            newAllQuestionKeyCombinationArray[num - 1]
+                          }()===option.id}">
+                              <input type="radio" id="${
+                                newAllQuestionKeyCombinationArray[num - 1]
+                              }-passed" name="${
+                      newAllQuestionKeyCombinationArray[num - 1]
+                    }"
+                                  data-bind="checkedValue:option.id,checked:vm.formData.${
+                                    newAllQuestionKeyCombinationArray[num - 1]
+                                  }, attr:{id:'${
+                      newAllQuestionKeyCombinationArray[num - 1]
+                    }'+'-'+option.id,disabled:vm.isReadOnlyField('${
+                      newAllQuestionKeyCombinationArray[num - 1]
+                    }')}" />
+                              <label data-bind="text:option.label, attr:{for:'${
+                                newAllQuestionKeyCombinationArray[num - 1]
+                              }'+'-'+option.id}"></label>
+                          </div>
+                      </div>
+                  </div>
+              </div>`
+              }
+          </div>
+      </div>  
+`;
+
   return (
     <>
       {structureHTML} <br />

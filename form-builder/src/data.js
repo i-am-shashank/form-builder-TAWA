@@ -1,16 +1,20 @@
 let questionsArray = [
   {
-    serialNo: "1",
-    question: "Is this a are for public the any seafarer recruitment and placement service?",
-    num: "1",
+    col1: "Visually inspect the lifeboat. Conduct measurements and verify clearances as required.",
+    col2: "Visually inspect the lifeboat. Conduct measurements and verify clearances as required.",
+    passFail: false,
+    ynna: undefined,
+    inpTxt: true,
+    txt: "Colour of canopy",
   },
   {
-    serialNo: "2",
-    question: "Is this a private seafarer recruitment and placement service?",
-    num: "2",
+    col1: "",
+    col2: "Hand rails for persons moving about exterior of lifeboat and to aid embarkation and disembarkation",
+    passFail: true,
+    ynna: undefined,
+    inpTxt: false,
+    txt: "",
   },
- 
-  
 ];
 
 export default questionsArray;
